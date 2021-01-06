@@ -164,7 +164,7 @@ float INA219::shuntVoltage() const {
   return (temp / 100000);
 }
 
-int16_t INA219::busVoltageRaw() {
+uint16_t INA219::busVoltageRaw() {
   uint16_t bus_voltage_register = read16(V_BUS_R);
   _overflow = bitRead(bus_voltage_register, OVF_B);     // overflow bit
   _ready    = bitRead(bus_voltage_register, CNVR_B);    // ready bit
@@ -173,7 +173,7 @@ int16_t INA219::busVoltageRaw() {
 
 
 float INA219::busVoltage() {
-  int16_t temp;
+  uint16_t temp;
   temp = busVoltageRaw();
   temp >>= 3;
   return (temp * 0.004);

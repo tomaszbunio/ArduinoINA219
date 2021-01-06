@@ -154,7 +154,7 @@ class INA219
     int16_t shuntVoltageRaw() const;
 
     /// Returns raw bus voltage binary value.
-    int16_t busVoltageRaw();
+    uint16_t busVoltageRaw();
 
     /// Returns raw current binary value.    
     int16_t shuntCurrentRaw() const;
