@@ -274,7 +274,7 @@ bool INA219::overflow() const {
 **********************************************************************/
 
 // write16 returns a non-zero value in the case of a transmission error.
-uint8_t INA219::write16(t_reg a, uint16_t d) const {
+uint8_t INA219::write16(t_reg a, uint16_t d, bool stop) const {
   uint8_t temp;
   temp = (uint8_t)d;
   d >>= 8;
@@ -290,7 +290,7 @@ uint8_t INA219::write16(t_reg a, uint16_t d) const {
     Wire.send(temp); // write data lobyte;
   #endif
 
-  temp = Wire.endTransmission(); // end transmission
+  temp = Wire.endTransmission(stop); // end transmission
   _delay_ms(1);
   return temp;
 }
@@ -299,7 +299,7 @@ int16_t INA219::read16(t_reg a) const {
   uint16_t ret;
 
   // move the pointer to reg. of interest, null argument
-  write16(a, 0);
+  write16(a, 0, false);
   
   Wire.requestFrom((int)i2c_address, 2);    // request 2 data bytes
 
