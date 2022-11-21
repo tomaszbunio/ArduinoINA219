@@ -209,7 +209,7 @@ class INA219
     /// When selecting a register pointer to read from, (d) = 0
     // RMW: Returns non-zero in the case of an errant write.
     uint8_t write16( t_reg addr,   ///< Register address.
-    		      uint16_t data ///< Data to be writen.
+    		      uint16_t data, ///< Data to be writen.
     		      bool stop = true // false if the i2c bus should not be released.
     		     ) const;
 
